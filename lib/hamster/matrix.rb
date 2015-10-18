@@ -12,6 +12,10 @@ module Hamster
         @row_vectors = Hamster.vector(*array.map { |a| Hamster.vector(*a) })
       end
 
+      def row(n)
+        row_vectors[n]
+      end
+
       def row_vectors
         @row_vectors || Hamster::Vector.new
       end
