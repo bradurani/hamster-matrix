@@ -10,8 +10,9 @@ Gem::Specification.new do |spec|
   spec.email         = ["bradurani@gmail.com"]
 
   spec.summary       = "Immutable Persistent Matrix using Hamster"
-  spec.description   = "Immutable Persistent Matrix using Hamster"
+  spec.description   = "Immutable Persistent Matrix using Hamster that aims to copy as much of the API from Ruby's native Matrix class as possible"
   spec.homepage      = "https://github.com/bradurani/hamster-matrix."
+  spec.licenses      = "public domain"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
@@ -28,7 +29,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec"
+  spec.add_development_dependency 'rspec', '~> 3.0', '>= 3.0.0'
 
-  spec.add_runtime_dependency "hamster", "~> 1.0.0"
+  spec.add_runtime_dependency 'hamster', '~> 1.0', '>= 1.0.0'
 end
