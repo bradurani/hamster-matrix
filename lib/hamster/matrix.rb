@@ -56,9 +56,7 @@ module Hamster
       row_vectors[i]
     end
 
-    def row_vectors
-      @row_vectors || Hamster::Vector.new
-    end
+    attr_reader :row_vectors
 
     private 
     def enumerable_check!(enumerable)
