@@ -229,47 +229,71 @@ describe Hamster::Matrix do
     end
   end
 
-  context '#[]' do
+  context '#get' do
     it 'returns item at 0,0' do
       matrix = Hamster::Matrix.new([[1,2],[3,4]])
-      expect(matrix[0,0]).to eql(1)
+      expect(matrix.get(0,0)).to eql(1)
     end
 
     it 'returns item at 0,1' do
       matrix = Hamster::Matrix.new([[1,2],[3,4]])
-      expect(matrix[0,1]).to eql(2)
+      expect(matrix.get(0,1)).to eql(2)
     end
 
     it 'returns item at 1,0' do
       matrix = Hamster::Matrix.new([[1,2],[3,4]])
-      expect(matrix[1,0]).to eql(3)
+      expect(matrix.get(1,0)).to eql(3)
     end
 
     it 'returns item at 1,1' do
       matrix = Hamster::Matrix.new([[1,2],[3,4]])
-      expect(matrix[1,1]).to eql(4)
+      expect(matrix.get(1,1)).to eql(4)
+    end
+
+    it 'returns nil if I out-of-bounds' do
+      matrix = Hamster::Matrix.new([[1,2],[3,4]])
+      expect(matrix.get(10,1)).to eql(nil)
+    end
+
+    it 'returns nil if J out-of-bounds' do
+      matrix = Hamster::Matrix.new([[1,2],[3,4]])
+      expect(matrix.get(1,10)).to eql(nil)
     end
 
   end
-
-  context '#[]=' do
-    
-    it 'raises error if not passed 3 args' do
+  
+  context '#[]' do
+    it 'calls #get' do
       matrix = Hamster::Matrix.new([[1,2],[3,4]])
-      expect { matrix[0] = 0 }.to raise_error("Requires 3 args. Call must take the form m[0,0] = 0")
-    end    
-
+      expect(matrix[0,0]).to eql(1)
+    end
   end
 
   context '#set' do
-    # it 'sets item at 0,0 persistently' do
-    #   matrix = Hamster::Matrix.new([[1,2],[3,4]])
-    #   newMatrix = matrix.set(0,0,:foo)
-    #   expect(matrix.row_vectors).to eql(Hamster.vector(Hamster.vector(1,2), 
-    #                                                    Hamster.vector(3,4)))
-    #   expect(newMatrix.row_vectors).to eql(Hamster.vector(Hamster.vector(:foo ,2), 
-    #                                                       Hamster.vector(3,4)))
-    # end
+    it 'sets item at 0,0 persistently' do
+      matrix = Hamster::Matrix.new([[1,2],[3,4]])
+      newMatrix = matrix.set(0,0,:foo)
+      expect(matrix).to eql(Hamster::Matrix.new([[1,2],[3,4]]))
+      expect(newMatrix).to eql(Hamster::Matrix.new([[:foo,2],[3,4]]))
+    end
+
+    it 'sets item at 0,1 persistently' do
+      matrix = Hamster::Matrix.new([[1,2],[3,4]])
+      newMatrix = matrix.set(0,1,"foo")
+      expect(matrix).to eql(Hamster::Matrix.new([[1,2],[3,4]]))
+      expect(newMatrix).to eql(Hamster::Matrix.new([[1,"foo"],[3,4]]))
+    end
+
+    it 'raise ExceptionForMatrix::ErrDimensionMismatch if I out-of-bounds' do
+      matrix = Hamster::Matrix.new([[1,2],[3,4]])
+      expect { matrix.set(10,0,"foo") }.to raise_error(ExceptionForMatrix::ErrDimensionMismatch, 'I index 10 outside of array bounds')
+    end
+
+    it 'raise ExceptionForMatrix::ErrDimensionMismatch if J out-of-bounds' do
+      matrix = Hamster::Matrix.new([[1,2],[3,4]])
+      expect { matrix.set(0,20,"foo") }.to raise_error(ExceptionForMatrix::ErrDimensionMismatch, 'J index 20 outside of array bounds')
+    end
+
   end
 
 end

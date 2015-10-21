@@ -5,7 +5,7 @@ require 'matrix'
 module Hamster
 
   def self.matrix(array = Hamster.vector)
-    Matrix.new(array)
+    Hamster::Matrix.new(array)
   end
 
   class Matrix
@@ -33,24 +33,23 @@ module Hamster
     end
     alias_method :eql?, :==
 
-    def [](i,j)
-      row(i)[j]
+    def get(i,j)
+      row = row(i)
+      return nil unless row
+      row[j]
     end
-
-    def []=(*args)
-      raise "Requires 3 args. Call must take the form m[0,0] = 0" unless args.length == 3
-      i = args[0]
-      j = args[1]
-      value = args[2]
-      set(i,j,value)
-    end
+    alias_method :[], :get
 
     def set(i,j,value)
+      if(i >= row_vectors.length)
+        raise ExceptionForMatrix::ErrDimensionMismatch.new("I index #{i} outside of array bounds")
+      end
       oldRow = row(i)
+      if(j >= oldRow.length)
+        raise ExceptionForMatrix::ErrDimensionMismatch.new("J index #{j} outside of array bounds")
+      end
       newRow = oldRow.set(j, value)
-      puts newRow.class
-      row_vectors.set(i, newRow)
-
+      Hamster::Matrix.new(row_vectors.set(i, newRow))
     end
 
     def row(i)
