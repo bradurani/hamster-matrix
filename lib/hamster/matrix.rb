@@ -3,21 +3,27 @@ require 'hamster'
 require 'matrix'
 
 module Hamster
+
+  def self.matrix(array = Hamster.vector)
+    Matrix.new(array)
+  end
+
   class Matrix
     
-    # def self.[](*arrays)
-    #   @row_vectors = Hamster::Vector.new(*arrays)
-    # end
+    def self.[](*array)
+      Hamster::Matrix.new(array)
+    end
 
     def initialize(array = Hamster.vector)
       enumerable_check!(array)
-      raise TypeError.new('Enumerable must define map') unless array.responds_to?(:map)
-      Hamster.vector(*array.map do |a| 
-        width = a.length unless width
+      width = nil
+      @row_vectors = Hamster.vector(*array.map do |a| 
+        enumerable_check!(a)
+        width ||= a.length
         unless(width == a.length)
-          raise ExceptionForMatrix::ErrDimensionMismatch.new("row size differs (#{a.length} should be #{width}")
+          raise ExceptionForMatrix::ErrDimensionMismatch.new("row size differs (#{a.length} should be #{width})")
         end
-        Hamster.vector(*enumerable_check!(a)) 
+        Hamster.vector(*a) 
       end)
     end
 
@@ -57,12 +63,10 @@ module Hamster
 
     private 
     def enumerable_check!(enumerable)
-      binding.pry
-      unless enumerable.is_a?(Enumerable)
+      unless enumerable.is_a?(::Enumerable)
         raise TypeError.new('Matrix rows must be Enumerable')
       end
     end
-
 
   end
 end

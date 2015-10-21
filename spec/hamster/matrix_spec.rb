@@ -1,5 +1,17 @@
 require 'spec_helper'
 
+describe Hamster do
+  context '#matrix' do
+    it 'calls constructor' do
+      expect(Hamster.matrix([[1,2,3],[1,2,3]])).to eql Hamster::Matrix.new([[1,2,3],[1,2,3]])
+    end
+
+    it 'creates empty matrix' do
+      expect(Hamster.matrix).to eql Hamster::Matrix.new
+    end
+  end
+end
+
 describe Hamster::Matrix do
   it 'has a version number' do
     expect(Hamster::Matrix::VERSION).not_to be nil
@@ -8,6 +20,16 @@ end
 
 describe Hamster::Matrix do
   
+  context '#[]' do
+    it 'calls constructor' do
+      expect(Hamster::Matrix[[1,2,3],[1,2,3]]).to eql Hamster::Matrix.new([[1,2,3],[1,2,3]])
+    end
+
+    it 'creates empty matrix' do
+      expect(Hamster::Matrix[]).to eql Hamster::Matrix.new
+    end
+  end
+
   context '#==' do
     context 'true cases' do
       it 'returns true if it compares to matrices with the same values' do
@@ -128,7 +150,7 @@ describe Hamster::Matrix do
         expected = Hamster::Matrix.new([[1,2,3],[1,2,3]])
         expect(matrix).to eql(expected)
         expect(matrix.row_vectors.is_a?(Hamster::Vector)).to be true
-        expect(matrix.row_vectors.all?{ |r| r.is_a?(Hamster::Vector)}.to be true
+        expect(matrix.row_vectors.all?{ |r| r.is_a?(Hamster::Vector)}).to be true
       end
 
       it 'create a matrix given Hamster::Lists' do
@@ -139,7 +161,7 @@ describe Hamster::Matrix do
         expected = Hamster::Matrix.new([[1,2,3],[1,2,3]])
         expect(matrix).to eql(expected)
         expect(matrix.row_vectors.is_a?(Hamster::Vector)).to be true
-        expect(matrix.row_vectors.all?{ |r| r.is_a?(Hamster::Vector)}.to be true
+        expect(matrix.row_vectors.all?{ |r| r.is_a?(Hamster::Vector)}).to be true
       end
 
       it 'create a matrix given row matrix' do
@@ -162,23 +184,23 @@ describe Hamster::Matrix do
 
     context 'invalid args' do
       it 'raises a ExceptionForMatrix::ErrDimensionMismatch with mismatched dims' do
-       expect { Hamster::Matrix.new([[1,2],[1,2,3]]) }.to raise_error(ExceptionForMatrix::ErrDimensionMismatch.new("row size differs (3 should be 2)"))
+        expect { Hamster::Matrix.new([[1,2],[1,2,3]]) }.to raise_error(ExceptionForMatrix::ErrDimensionMismatch, "row size differs (3 should be 2)")
       end
 
       it 'raises a ExceptionForMatrix::ErrDimensionMismatch with mismatched dims and types' do
-       expect { Hamster::Matrix.new([[1,2, :foo],['s','f']]) }.to raise_error(ExceptionForMatrix::ErrDimensionMismatch.new("row size differs (2 should be 3)"))
+        expect { Hamster::Matrix.new([[1,2, :foo],['s','f']]) }.to raise_error(ExceptionForMatrix::ErrDimensionMismatch, "row size differs (2 should be 3)")
       end
 
       it 'raises a type error for non-enumerables' do
-       expect { Hamster::Matrix.new([[1,2],1]) }.to raise_error(TypeError)
+        expect { Hamster::Matrix.new([[1,2],1]) }.to raise_error(TypeError)
       end
 
       it 'raises a type error given flat array' do
-       expect { Hamster::Matrix.new([1,2,3]) }.to raise_error(TypeError)
+        expect { Hamster::Matrix.new([1,2,3]) }.to raise_error(TypeError)
       end
 
       it 'raises a type error given flat array' do
-       expect { Hamster::Matrix.new([1,2,3]) }.to raise_error(TypeError)
+        expect { Hamster::Matrix.new([1,2,3]) }.to raise_error(TypeError)
       end
 
     end
