@@ -34,7 +34,7 @@ DEPENDENCIES
   hamster (~> 1.0.0)
   hamster-matrix!
   rake (~> 10.0)
-  rspec
+  rspec (~> 3.0, >= 3.0.0)
 
 BUNDLED WITH
    1.10.6
