@@ -1,4 +1,4 @@
-<img src="https://travis-ci.org/bradurani/hamster-matrix.svg"/>
+[![Build Status](https://travis-ci.org/bradurani/hamster-matrix.svg?branch=v0.9.3)](https://travis-ci.org/bradurani/hamster-matrix)
 
 # Hamster Matrix
 
