@@ -412,6 +412,126 @@ describe Hamster::Matrix do
     end
   end
 
+  describe '#collect' do
+    it 'transforms all elements in the matrix' do
+      matrix = Hamster::Matrix.new([[1,2,3],[4,5,6]])
+      expect(matrix.collect{ |i| i * 2 }).to eql(Hamster::Matrix.new([[2,4,6],[8,10,12]]))
+    end
+
+    it 'raised error if not given block' do
+      matrix = Hamster::Matrix.new([[1,2,3],[4,5,6]])
+      expect { matrix.collect }.to raise_error
+    end
+  end
+
+  describe '#column' do
+    it 'returns the middle column' do
+      matrix = Hamster::Matrix.new([[1,2,3],[4,5,6]])
+      expect(matrix.column(1)).to eql(Hamster.vector(2,5))
+    end
+  end
+
+  describe '#column_vectors' do
+    it 'returns all columns' do
+      matrix = Hamster::Matrix.new([[1,2,3],[4,5,6]])
+      expect(matrix.column_vectors).to eql(Hamster::Matrix.new([[1,4],[2,5],[3,6]]).row_vectors)
+    end
+  end
+
+  describe '#empty?' do
+    it 'return true for empty' do
+      matrix = Hamster::Matrix.new
+      expect(matrix.empty?).to eql(true)
+    end
+
+    it 'return false if not empty' do
+      matrix = Hamster::Matrix.new([[1,2],[3,4]])
+      expect(matrix.empty?).to eql(false)
+    end
+  end
+
+  describe '#hash' do
+    it 'returns a hash' do
+      matrix = Hamster::Matrix.new([[2,8],[4,5]])
+      expect(matrix.hash).to be_a(Bignum)
+    end
+  end
+
+  describe '#inspect' do
+    it 'returns empty for empty' do
+      matrix = Hamster::Matrix.new
+      expect(matrix.inspect).to eql('Hamster::Matrix.empty')
+    end
+
+    it 'returns string for matrix' do
+      matrix = Hamster::Matrix.new([[8,8,8],[3,4,5]])
+      expected =
+<<-FOO
+Hamster::Matrix[[8, 8, 8]
+                [3, 4, 5]]
+FOO
+      expect(matrix.inspect).to eql(expected.strip)
+    end
+  end
+
+  describe '#square?' do
+    it 'returns true if square' do
+      matrix = Hamster::Matrix.new([[2,8],[4,5]])
+      expect(matrix.square?).to be(true)
+    end
+
+    it 'returns false if not square' do
+      matrix = Hamster::Matrix.new([[2,8,1],[4,5,6]])
+      expect(matrix.square?).to be(false)
+    end
+
+    it 'returns true for empty' do
+      matrix = Hamster::Matrix.new
+      expect(matrix.square?).to be(true)
+    end
+  end
+
+  describe '#to_a' do
+    it 'returns nested arrays' do
+      matrix = Hamster::Matrix.new([[2,8],[4,5]])
+      expect(matrix.to_a).to eql([[2,8],[4,5]])
+    end
+  end
+
+  describe '#to_s' do
+    it 'returns pretty string' do
+      matrix = Hamster::Matrix.new([[3,3,4],[6,5,4]])
+      expected = 
+<<-FOO
+[[3, 3, 4]
+ [6, 5, 4]]
+FOO
+      expect(matrix.to_s).to eql(expected.strip!)
+    end
+  end
+
+  describe '#zero?' do
+    it 'returns true for zeros' do
+      matrix = Hamster::Matrix.new([[0,0],[0,0]])
+      expect(matrix.zero?).to eql(true)
+    end
+
+    it 'returns false for not zeros' do
+      matrix = Hamster::Matrix.new([[1,0],[0,0]])
+      expect(matrix.zero?).to eql(false)
+    end
+
+    it 'returns false for non-numeric' do
+      matrix = Hamster::Matrix.new([[0,'s'],[0,0]])
+      expect(matrix.zero?).to eql(false)
+    end
+
+    it 'returns true for empty' do
+      matrix = Hamster::Matrix.new
+      expect(matrix.zero?).to eql(true)
+    end    
+  end
+
 end
 
 
