@@ -15,6 +15,7 @@ module Hamster
     end
 
     def self.identity(n)
+      return new if n == 0
       new(::Matrix.identity(n).row_vectors)
     end
 
