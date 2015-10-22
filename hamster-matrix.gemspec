@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "Immutable persistent matrix using Hamster"
   spec.description   = "Immutable persistent matrix using Hamster that aims to copy as much of the API from Ruby's native Matrix class as possible"
-  spec.homepage      = "https://github.com/bradurani/hamster-matrix."
+  spec.homepage      = "https://github.com/bradurani/hamster-matrix"
   spec.licenses      = "public domain"
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
