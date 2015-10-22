@@ -1,3 +1,5 @@
+<img src="https://travis-ci.org/bradurani/hamster-matrix.svg"/>
+
 # Hamster Matrix
 
 Hamster Matrix is a gem providing a persietent immutable matrix for functional programming in Ruby. It is an extension for the popular [Hamster](https://github.com/hamstergem/hamster/) gem, using Hamster [Vectors](http://www.rubydoc.info/github/hamstergem/hamster/master/Hamster/Vector) under the hood.  
