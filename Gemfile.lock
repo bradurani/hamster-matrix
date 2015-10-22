@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hamster-matrix (0.9.1)
+    hamster-matrix (0.9.5)
       hamster (~> 1.0)
 
 GEM
