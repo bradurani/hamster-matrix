@@ -1,4 +1,3 @@
-require "hamster/version"
 require 'hamster'
 require 'matrix'
 
