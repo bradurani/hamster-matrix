@@ -178,6 +178,10 @@ module Hamster
       row_string(1)
     end
 
+    def to_matrix
+      ::Matrix[to_a]
+    end
+
     def zero?
       row_vectors.all? { |row| row.all? { |elem| elem.is_a?(Numeric) && elem.zero? } }
     end

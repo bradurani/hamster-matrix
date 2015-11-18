@@ -512,6 +512,14 @@ FOO
     end
   end
 
+  describe '#to_matrix' do
+    it 'returns a Ruby Matrix' do
+      matrix = Hamster::Matrix.new([[3,3,4],[6,5,4]])
+      expected = ::Matrix[[[3,3,4],[6,5,4]]]
+      expect(matrix.to_matrix).to eql(expected)
+    end
+  end
+
   describe '#zero?' do
     it 'returns true for zeros' do
       matrix = Hamster::Matrix.new([[0,0],[0,0]])
