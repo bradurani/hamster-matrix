@@ -42,7 +42,7 @@ puts a
 
 Implements the following methods replicating the behavior of Ruby's [Matrix](http://ruby-doc.org/stdlib-2.0.0/libdoc/matrix/rdoc/Matrix.html) class as closely as possible
 
- ### Class Methods
+### Class Methods
  - []
  - identity
  - build
@@ -57,30 +57,30 @@ Implements the following methods replicating the behavior of Ruby's [Matrix](htt
  - unit
 
 ### Instance Methods
-  - ==
-  - []
-  - collect
-  - column
-  - column_count
-  - column_size
-  - column_vectors
-  - component
-  - element
-  - empty?
-  - get
-  - hash
-  - inspect
-  - map
-  - row
-  - row_count
-  - row_size
-  - row_vectors
-  - set
-  - square?
-  - to_a
-  - to_matrix
-  - to_s
-  - zero?
+ - ==
+ - []
+ - collect
+ - column
+ - column_count
+ - column_size
+ - column_vectors
+ - component
+ - element
+ - empty?
+ - get
+ - hash
+ - inspect
+ - map
+ - row
+ - row_count
+ - row_size
+ - row_vectors
+ - set
+ - square?
+ - to_a
+ - to_matrix
+ - to_s
+ - zero?
 
 ## Contributing
 

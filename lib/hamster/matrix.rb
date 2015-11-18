@@ -17,41 +17,49 @@ module Hamster
       Hamster::Matrix.new(array)
     end
 
+    # @return [Hamster::Matrix]
     def self.identity(n)
       return new if n == 0
       new(::Matrix.identity(n).row_vectors)
     end
 
+    # @return [Hamster::Matrix]
     def self.build(row_count, column_count = row_count, &block)
       matrix = ::Matrix.build(row_count, column_count, &block)
       new(matrix.row_vectors)
     end
 
+    # @return [Hamster::Matrix]
     def self.column_vector(array)
       matrix = ::Matrix.column_vector(array)
       new(matrix.row_vectors)
     end
 
+    # @return [Hamster::Matrix]
     def self.columns(array)
       matrix = ::Matrix.columns(array)
       new(matrix.row_vectors)
     end
 
+    # @return [Hamster::Matrix]
     def self.diagonal(*array)
       matrix = ::Matrix.diagonal(*array)
       new(matrix.row_vectors)
     end
 
+    # @return [Hamster::Matrix]
     def self.row_vector(row)
       matrix = ::Matrix.row_vector(row)
       new(matrix.row_vectors)
     end
 
+    # @return [Hamster::Matrix]
     def self.rows(row)
       matrix = ::Matrix.rows(row)
       new(matrix.row_vectors)
     end
 
+    # @return [Hamster::Matrix]
     def self.scalar(n, value)
       matrix = ::Matrix.scalar(n, value)
       new(matrix.row_vectors)
@@ -75,6 +83,7 @@ module Hamster
       end]
     end
 
+    # @return Boolean
     def ==(other)
       return false unless other.is_a? Hamster::Matrix
       self.row_vectors == other.row_vectors
@@ -101,7 +110,6 @@ module Hamster
     #   # [[1, 0, 0]
     #   #  [0, 1, 0]
     #   #  [0, 0, "foo"]]
-
     #   puts a
     #   # [[1, 0, 0]
     #   #  [0, 1, 0]
@@ -120,16 +128,19 @@ module Hamster
       Hamster::Matrix.new(row_vectors.set(i, new_row))
     end
 
+    # @return [Hamster::Vector]
     def row(i)
       row_vectors[i]
     end
 
+    # @return [Fixnum]
     def column_count
       return 0 if row_vectors.size == 0
       return row_vectors.first.size
     end
     alias_method :column_size, :column_count
 
+    # @return [Fixnum]
     def row_count
       return row_vectors.size
     end
@@ -142,22 +153,27 @@ module Hamster
     end
     alias_method :map, :collect
 
+    # @return [Fixnum]
     def column(n)
       row_vectors.map { |row| row[n] }
     end
 
+    # @return [Hamster::Vector]
     def column_vectors
       Hamster::Vector[*(0..row_vectors.size).map { |n| column(n) }]
     end
 
+    # @return [Boolean]
     def empty?
       row_vectors.size == 0
     end
 
+    # @return [Hash]
     def hash
       row_vectors.hash
     end
 
+    # @return [String]
     def inspect
       if empty?
         "#{self.class}.empty"
@@ -166,28 +182,34 @@ module Hamster
       end
     end
 
+    # @return [Boolean]
     def square?
       row_count == column_count
     end
 
+    # @return [Array]
     def to_a
       row_vectors.map { |row| row.to_a }.to_a
     end
 
+    # @return [String]
     def to_s
       row_string(1)
     end
 
+    # @return [Matrix]
     def to_matrix
       ::Matrix[to_a]
     end
 
+    # @return [Boolean]
     def zero?
       row_vectors.all? do |row| 
         row.all? { |elem| elem.is_a?(Numeric) && elem.zero? }
       end
     end
 
+    # @return [Hamster::Vector]
     attr_reader :row_vectors
 
     private
