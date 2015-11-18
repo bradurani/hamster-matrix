@@ -2,7 +2,7 @@
 
 # Hamster Matrix
 
-Hamster Matrix is a gem providing a persietent immutable matrix for functional programming in Ruby. It is an extension for the popular [Hamster](https://github.com/hamstergem/hamster/) gem, using Hamster [Vectors](http://www.rubydoc.info/github/hamstergem/hamster/master/Hamster/Vector) under the hood.  
+Hamster Matrix is a gem providing a persietent immutable matrix for functional programming in Ruby. It is an extension for the popular [Hamster](https://github.com/hamstergem/hamster/) gem. It creates a matrix by using nested Hamster [Vectors](http://www.rubydoc.info/github/hamstergem/hamster/master/Hamster/Vector).  
 
 It's great for using as a board in 2D video games where the matrix must be modified as the game state changes while leaving references to the old state unchanged, such as when using a time-travelling debugger. It copies the interface from Ruby's [Matrix](http://ruby-doc.org/stdlib-2.0.0/libdoc/matrix/rdoc/Matrix.html) class as much as possible.
 
@@ -29,7 +29,58 @@ Or install it yourself as:
 require 'hamster-matrix'
 a = Hamster::Matrix[[1,0,0],[0,1,0],[0,0,1]]
 b = a.set(2,2,'foo')
-puts b #
+puts b
+# [[1, 0, 0]
+#  [0, 1, 0]
+#  [0, 0, "foo"]]
+
+puts a
+#[[1, 0, 0]
+# [0, 1, 0]
+# [0, 0, 1]]
+```
+
+Implements the following methods replicating the behavior of Ruby's [Matrix](http://ruby-doc.org/stdlib-2.0.0/libdoc/matrix/rdoc/Matrix.html) class as closely as possible
+
+ *** Class Methods
+ - []
+ - identity
+ - build
+ - column_vector
+ - columns
+ - diagonal
+ - I
+ - identity
+ - row_vector
+ - rows
+ - scalar
+ - unit
+
+ *** Instance Methods
+  - ==
+  - []
+  - collect
+  - column
+  - column_count
+  - column_size
+  - column_vectors
+  - component
+  - element
+  - empty?
+  - get
+  - hash
+  - inspect
+  - map
+  - row
+  - row_count
+  - row_size
+  - row_vectors
+  - set
+  - square?
+  - to_a
+  - to_matrix
+  - to_s
+  - zero?
 
 ## Contributing
 
