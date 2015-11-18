@@ -62,17 +62,17 @@ module Hamster
       alias_method :unit, :identity
     end
 
-    def initialize(array = Hamster.vector)
+    def initialize(array = Hamster::Vector[])
       enumerable_check!(array)
       width = nil
-      @row_vectors = Hamster.vector(*array.map do |a| 
+      @row_vectors = Hamster::Vector[*array.map do |a| 
         enumerable_check!(a)
         width ||= a.size
         unless(width == a.size)
           raise ExceptionForMatrix::ErrDimensionMismatch.new("row size differs (#{a.size} should be #{width})")
         end
-        Hamster.vector(*a) 
-      end)
+        Hamster::Vector[*a] 
+      end]
     end
 
     def ==(other)
@@ -147,7 +147,7 @@ module Hamster
     end
 
     def column_vectors
-      Hamster.vector(*(0..row_vectors.size).map { |n| column(n) })
+      Hamster::Vector[*(0..row_vectors.size).map { |n| column(n) }]
     end
 
     def empty?
