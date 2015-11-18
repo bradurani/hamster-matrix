@@ -2,13 +2,17 @@ require 'hamster'
 require 'matrix'
 
 module Hamster
-
-  def self.matrix(array = Hamster.vector)
-    Hamster::Matrix.new(array)
-  end
-
   class Matrix
     
+    # Creates a new Hamster Matrix
+    #
+    # @example
+    #   Hamster::Matrix[[1,0,0],[0,1,0],[0,0,1]]
+    #   # => Hamster::Matrix[[1,0,0]
+    #   #                    [0,1,0]
+    #   #                    [0,0,1]]
+    #
+    # @return [Hamster::Matrix]
     def self.[](*array)
       Hamster::Matrix.new(array)
     end
@@ -86,6 +90,24 @@ module Hamster
     alias_method :component, :get
     alias_method :element, :get
 
+
+    # Sets the value at a certain given index, leaving
+    # existing references unchanged
+    #
+    # @example
+    #   a = Hamster::Matrix[[1,0,0],[0,1,0],[0,0,1]]
+    #   b = a.set(2,2,'foo')
+    #   puts b
+    #   # [[1, 0, 0]
+    #   #  [0, 1, 0]
+    #   #  [0, 0, "foo"]]
+
+    #   puts a
+    #   # [[1, 0, 0]
+    #   #  [0, 1, 0]
+    #   #  [0, 0, 1]]
+    #
+    # @return [Hamster::Matrix]
     def set(i,j,value)
       if(i >= row_vectors.size)
         raise ExceptionForMatrix::ErrDimensionMismatch.new("I index #{i} outside of array bounds")
@@ -140,7 +162,7 @@ module Hamster
       if empty?
         "#{self.class}.empty"
       else
-        "#{self.class}#{row_string(16)}"
+        "#{self.class}#{row_string(19)}"
       end
     end
 
@@ -162,13 +184,16 @@ module Hamster
 
     attr_reader :row_vectors
 
-    private 
+    private
+
+    # @private 
     def enumerable_check!(enumerable)
       unless enumerable.is_a?(::Enumerable)
         raise TypeError.new('Matrix rows must be Enumerable')
       end
     end
 
+    # @private
     def row_string(spaces)
       br = ''
       row_vectors.inject('[') do |acc, row|

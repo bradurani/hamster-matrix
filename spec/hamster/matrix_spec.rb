@@ -3,11 +3,11 @@ require 'spec_helper'
 describe Hamster do
   describe '#matrix' do
     it 'calls constructor' do
-      expect(Hamster.matrix([[1,2,3],[1,2,3]])).to eql Hamster::Matrix.new([[1,2,3],[1,2,3]])
+      expect(Hamster::Matrix[[1,2,3],[1,2,3]]).to eql Hamster::Matrix.new([[1,2,3],[1,2,3]])
     end
 
     it 'creates empty matrix' do
-      expect(Hamster.matrix).to eql Hamster::Matrix.new
+      expect(Hamster::Matrix[]).to eql Hamster::Matrix.new
     end
   end
 end
@@ -468,8 +468,10 @@ describe Hamster::Matrix do
       expected =
 <<-FOO
 Hamster::Matrix[[8, 8, 8]
-                [3, 4, 5]]
+                   [3, 4, 5]]
 FOO
+      #not sure what's going on here, but the spacing in the heredoc doesn't 
+      #match the spacing in the command line
       expect(matrix.inspect).to eql(expected.strip)
     end
   end

@@ -25,7 +25,11 @@ Or install it yourself as:
 
 ## Usage
 
-###Coming Soon!###
+```ruby
+require 'hamster-matrix'
+a = Hamster::Matrix[[1,0,0],[0,1,0],[0,0,1]]
+b = a.set(2,2,'foo')
+puts b #
 
 ## Contributing
 
