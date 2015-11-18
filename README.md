@@ -2,9 +2,9 @@
 
 # Hamster Matrix
 
-Hamster Matrix is a gem providing a persietent immutable matrix for functional programming in Ruby. It is an extension for the popular [Hamster](https://github.com/hamstergem/hamster/) gem. It creates a matrix by using nested Hamster [Vectors](http://www.rubydoc.info/github/hamstergem/hamster/master/Hamster/Vector).  
+Hamster Matrix is a gem providing a persistent immutable matrix for functional programming in Ruby. It is an extension for the popular [Hamster](https://github.com/hamstergem/hamster/) gem. It creates a matrix by using nested Hamster [Vectors](http://www.rubydoc.info/github/hamstergem/hamster/master/Hamster/Vector).  
 
-It's great for using as a board in 2D video games where the matrix must be modified as the game state changes while leaving references to the old state unchanged, such as when using a time-travelling debugger. It copies the interface from Ruby's [Matrix](http://ruby-doc.org/stdlib-2.0.0/libdoc/matrix/rdoc/Matrix.html) class as much as possible.
+It's great for keeping the board state in 2D video games, where the state must be modified while leaving references to the old state unchanged, such as when using a time travelling debugger or implementing undo functionality. It copies the interface from Ruby's [Matrix](http://ruby-doc.org/stdlib-2.0.0/libdoc/matrix/rdoc/Matrix.html) class as much as possible.
 
 
 ## Installation
