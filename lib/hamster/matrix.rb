@@ -183,7 +183,9 @@ module Hamster
     end
 
     def zero?
-      row_vectors.all? { |row| row.all? { |elem| elem.is_a?(Numeric) && elem.zero? } }
+      row_vectors.all? do |row| 
+        row.all? { |elem| elem.is_a?(Numeric) && elem.zero? }
+      end
     end
 
     attr_reader :row_vectors
