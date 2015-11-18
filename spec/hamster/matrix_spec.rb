@@ -23,15 +23,15 @@ describe Hamster::Matrix do
         matrix = Hamster::Matrix.new([[1,2],[3,4]])
         expect(matrix.row_vectors.length).to eql 2
         expect(matrix.row_vectors.is_a?(Hamster::Vector)).to be true
-        expect(matrix.row_vectors.first).to eql(Hamster.vector(1,2))
-        expect(matrix.row_vectors[1]).to eql(Hamster.vector(3,4))
+        expect(matrix.row_vectors.first).to eql(Hamster::Vector[1,2])
+        expect(matrix.row_vectors[1]).to eql(Hamster::Vector[3,4])
       end
 
       it 'create a matrix given Hamster::Vectors' do
-        matrix = Hamster::Matrix.new(Hamster.vector(
-          Hamster.vector(1,2,3),
-          Hamster.vector(1,2,3)
-        ))
+        matrix = Hamster::Matrix.new(Hamster::Vector[
+          Hamster::Vector[1,2,3],
+          Hamster::Vector[1,2,3]
+        ])
         expected = Hamster::Matrix.new([[1,2,3],[1,2,3]])
         expect(matrix).to eql(expected)
         expect(matrix.row_vectors.is_a?(Hamster::Vector)).to be true
@@ -39,10 +39,10 @@ describe Hamster::Matrix do
       end
 
       it 'create a matrix given Hamster::Lists' do
-        matrix = Hamster::Matrix.new(Hamster.list(
-          Hamster.list(1,2,3),
-          Hamster.list(1,2,3)
-        ))
+        matrix = Hamster::Matrix.new(Hamster::List[
+          Hamster::List[1,2,3],
+          Hamster::List[1,2,3]
+        ])
         expected = Hamster::Matrix.new([[1,2,3],[1,2,3]])
         expect(matrix).to eql(expected)
         expect(matrix.row_vectors.is_a?(Hamster::Vector)).to be true
@@ -52,17 +52,17 @@ describe Hamster::Matrix do
       it 'create a matrix given row matrix' do
         matrix = Hamster::Matrix.new([[1,2,3]])
         expect(matrix.row_vectors.is_a?(Hamster::Vector)).to be true
-        expect(matrix.row_vectors.first).to eql(Hamster.vector(1,2,3))
+        expect(matrix.row_vectors.first).to eql(Hamster::Vector[1,2,3])
       end
 
       it 'create a matrix given nothing' do
         matrix = Hamster::Matrix.new
-        expect(matrix.row_vectors).to eql(Hamster.vector)
+        expect(matrix.row_vectors).to eql(Hamster::Vector[])
       end
 
       it 'create a matrix given empty array' do
         matrix = Hamster::Matrix.new([])
-        expect(matrix.row_vectors).to eql(Hamster.vector)
+        expect(matrix.row_vectors).to eql(Hamster::Vector[])
       end
     end
 
@@ -287,7 +287,7 @@ describe Hamster::Matrix do
   describe '#row_vectors' do
     it 'creates a matrix' do
       matrix = Hamster::Matrix.new([[1,1],[1,1]])
-      expected = Hamster.vector(Hamster.vector(1,1), Hamster.vector(1,1))
+      expected = Hamster::Vector[Hamster::Vector[1,1], Hamster::Vector[1,1]]
       expect(matrix.row_vectors).to eql(expected)
     end
   end
@@ -295,13 +295,13 @@ describe Hamster::Matrix do
   describe '#row' do
     it 'returns row at 0' do
       matrix = Hamster::Matrix.new([[1,2],[3,4]])
-      expected = Hamster.vector(1,2)
+      expected = Hamster::Vector[1,2]
       expect(matrix.row(0)).to eql(expected)
     end
 
     it 'returns row at 1' do
       matrix = Hamster::Matrix.new([[1,2],[3,4]])
-      expected = Hamster.vector(3,4)
+      expected = Hamster::Vector[3,4]
       expect(matrix.row(1)).to eql(expected)
     end
   end
@@ -427,7 +427,7 @@ describe Hamster::Matrix do
   describe '#column' do
     it 'returns the middle column' do
       matrix = Hamster::Matrix.new([[1,2,3],[4,5,6]])
-      expect(matrix.column(1)).to eql(Hamster.vector(2,5))
+      expect(matrix.column(1)).to eql(Hamster::Vector[2,5])
     end
   end
 

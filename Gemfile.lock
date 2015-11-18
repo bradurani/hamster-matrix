@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    hamster-matrix (0.9.5)
-      hamster (~> 1.0)
+    hamster-matrix (2.0.0)
+      hamster (>= 1.0.0, < 3.0)
 
 GEM
   remote: https://rubygems.org/
