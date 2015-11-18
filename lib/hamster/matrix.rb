@@ -197,7 +197,7 @@ module Hamster
       row_string(1)
     end
 
-    # @return [Matrix]
+    # @return [::Matrix]
     def to_matrix
       ::Matrix[to_a]
     end
