@@ -29,7 +29,16 @@ Or install it yourself as:
 require 'hamster-matrix'
 a = Hamster::Matrix[[1,0,0],[0,1,0],[0,0,1]]
 b = a.set(2,2,'foo')
-puts b #
+puts b
+# [[1, 0, 0]
+#  [0, 1, 0]
+#  [0, 0, "foo"]]
+
+puts a
+#[[1, 0, 0]
+# [0, 1, 0]
+# [0, 0, 1]]
+```
 
 ## Contributing
 
